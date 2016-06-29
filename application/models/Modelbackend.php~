@@ -1,0 +1,233 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Modelbackend extends CI_Model {
+
+	public function cekAdmin($email,$pass){
+		$q = "select * from admin where email = '$email' and password='$pass'";
+	    return $this->db->query($q);
+	}
+
+
+	//set status admin
+
+	public function setAdmin()
+	{
+		$id_admin = $this->input->post('id_admin');
+		$status = $this->input->post('status');
+		$q = "update admin set isAktif = '2' where id_admin = '$id_admin'";
+		if($status=="2")
+			$q = "update admin set isAktif = '1' where id_admin = '$id_admin'";
+		return $this->db->query($q);
+	}
+	public function ubahPeserta()
+	{
+		$id_pelamar = $this->input->post('id_pelamar');
+		$id_event = $this->input->post('id_event');
+		$status = $this->input->post('status');
+		$no_ujian = $this->input->post('nomor');
+		$fase = $this->input->post('id_fase');
+		if($fase!=-1)
+			$q = "update apply set no_ujian='$no_ujian', id_fase ='$fase' where id_pelamar = '$id_pelamar' AND id_event = '$id_event'";
+		
+		return $this->db->query($q);
+	}
+	public function ubahKehadiranPeserta()
+	{
+		$id_pelamar = $this->input->post('id_pelamar');
+		$id_event = $this->input->post('id_event');
+		$isHadir = $this->input->post('isHadir');
+		$q = "update apply set isHadir='1' where id_pelamar='$id_pelamar' AND id_event='$id_event'";
+		if($isHadir=="1")
+			$q = "update apply set isHadir='0' where id_pelamar='$id_pelamar' AND id_event='$id_event'";
+		return $this->db->query($q);
+	}
+
+	public function ubahAdmin($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function ubahLowongan($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function ubahFase($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function ubahBerita($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+	public function ubahBerita1($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function ubahGelombang($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+	public function ubahjurusanprocess($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	public function ubahLokasi($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+	public function ubahsettingprocess($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
+	//
+
+	public function addLokasi($nama_kota,$keterangan)
+	{
+		$q = "insert into lokasi(nama_kota,keterangan) 
+		values('$nama_kota','$keterangan')";
+		return $this->db->query($q);
+	}
+
+	public function addArtikel($judul,$artikel,$photo)
+	{
+		$q = "insert into artikel(judul,artikel,gambar) 
+		values('$judul','$artikel','$photo')";
+		return $this->db->query($q);
+	}
+
+	public function addGelombang($nama)
+	{
+		$q = "insert into gelombang(nama) 
+		values('$nama')";
+		return $this->db->query($q);
+	}
+
+	public function addFase($judul,$deskripsi)
+	{
+		$q = "insert into fase(nama,deskripsi) 
+		values('$judul','$deskripsi')";
+		return $this->db->query($q);
+	}
+
+	public function addLowongan($nama,$deskripsi,$id_admin,$kuota,$waktu_deadline,$id_gelombang,$id_lokasi,$header,$tanggal_ujian,$waktu_cetak)
+	{
+		$q = "insert into event (nama,deskripsi,id_admin,kuota,waktu_deadline,id_gelombang,id_lokasi,header,tanggal_ujian,waktucetak) values('$nama','$deskripsi','$id_admin','$kuota','$waktu_deadline','$id_gelombang','$id_lokasi','$header','$tanggal_ujian','$waktu_cetak')";
+		return $this->db->query($q);
+	}
+
+	
+	
+
+	public function getLowongan(){
+		$q = "select A.id_event,A.nama as nama_event,A.deskripsi,A.tanggal_buat,A.kuota,A.waktu_deadline,A.id_gelombang as idgelombang,A.id_lokasi,A.tanggal_ujian,A.isCetakKartu,A.isAktif,A.waktucetak,A.header as gambar,B.id_gelombang,B.nama as nama_gelombang,C.id_lokasi,C.nama_kota from event A, gelombang B, lokasi C where A.id_gelombang = B.id_gelombang AND A.id_lokasi = C.id_lokasi order by tanggal_buat DESC";
+		return $this->db->query($q);
+	}
+	public function getEvent(){
+		$q = "select id_event,nama from event order by tanggal_buat DESC ";
+		return $this->db->query($q);
+	}
+	public function getJurusan(){
+		$q = "select id_jurusan,nama,kategori,kode from jurusan";
+		return $this->db->query($q);
+	}
+	public function getGelombang(){
+		$q = "select A.id_gelombang,A.nama,A.isAktif as status from gelombang A";
+		return $this->db->query($q);
+	}
+	public function getSetting(){
+		$q = "select * from setting";
+		return $this->db->query($q);
+	}
+	public function getLokasi(){
+		$q = "select A.id_lokasi,A.nama_kota as nama,A.keterangan from lokasi A";
+		return $this->db->query($q);
+	}
+	public function getFase(){
+		$q = "select A.id_fase,A.nama,A.deskripsi from fase A order by id_fase ASC";
+		return $this->db->query($q);
+	}
+	public function getPeserta(){
+		$event = $this->input->post("event");
+		$jurusan = $this->input->post("jurusan");
+		$level = $this->input->post("level");
+		$fase = $this->input->post("fase");
+		$kriteria = "";
+		if($event!=-1)
+			$kriteria = $kriteria ."AND A.id_event = '$event'";
+		if($jurusan!=-1)
+			$kriteria = $kriteria ."AND A.id_jurusan_lamar = '$jurusan'";
+		if($level!=-1)
+			$kriteria = $kriteria ."AND B.level = '$level'";
+		if($fase!=-1)
+			$kriteria = $kriteria ."AND A.id_fase = '$fase'";
+		$q = "select A.id_pelamar,A.id_gelombang,A.id_event,A.file_ijazah,A.file_transkrip,A.file_akte,A.file_cv,A.foto,A.id_jurusan_lamar,
+			A.isHadir,A.no_ujian,A.tanggal_apply,A.id_fase,B.nama_depan,B.nama_belakang,B.level,C.nama as nama_jurusan,C.id_jurusan,D.waktu_deadline 
+			from apply A, pelamar B,jurusan C, event D where A.id_jurusan_lamar=C.id_jurusan AND D.id_event = A.id_event AND
+			A.id_pelamar = B.id_pelamar $kriteria";
+		return $this->db->query($q);
+	}
+	public function addAdmin($username,$password,$email,$nama){
+		$q = "insert into admin(username,password,email,nama) values ('$username','$password','$email','$nama')";
+		return $this->db->query($q);
+	}
+	public function getArtikelFull(){
+		$q = "select A.id_artikel,A.judul as nama_artikel,A.artikel,A.tanggal,A.gambar as icon,A.isAktif from artikel A
+	    	where A.id_artikel order by tanggal DESC";
+	    return $this->db->query($q);
+	}
+
+	public function getAdmin(){
+		$q = "select A.id_admin,A.username,A.nama as nama_admin,A.email,A.jk,A.isAktif as status from admin A
+	    	where A.id_admin order by id_admin,status ASC";
+	    return $this->db->query($q);
+	}
+
+	public function getEmailPelamar(){
+		$q = "select A.id_pelamar,A.id_event,A.id_fase,B.id_fase,B.nama as nama_fase,C.id_pelamar,C.email,D.id_event,D.nama as nama_event from apply A, fase B, pelamar C, event D 
+		where A.id_pelamar = C.id_pelamar AND A.id_fase = B.id_fase AND A.id_event = D.id_event";
+		return $this->db->query($q);
+	}
+	
+	public function addjurusanprocess($nama,$kategori,$kode)
+	{
+		$q = "insert into jurusan(nama,kategori,kode) values ('$nama','$kategori','$kode')";
+		return $this->db->query($q);
+	}
+	public function getAbsensi($event,$jurusan,$level,$fase){
+		$kriteria = "";
+		if($event!=-1)
+			$kriteria = $kriteria ."AND A.id_event = '$event'";
+		if($jurusan!=-1)
+			$kriteria = $kriteria ."AND A.id_jurusan_lamar = '$jurusan'";
+		if($level!=-1)
+			$kriteria = $kriteria ."AND B.level = '$level'";
+		if($fase!=-1)
+			$kriteria = $kriteria ."AND A.id_fase = '$fase'";
+		$q = "select A.tanggal_apply,C.isCetakKartu,C.waktucetak,C.tanggal_ujian,A.barcode,B.nama_depan,B.nama_belakang,B.no_ktp,B.level,B.jurusan,B.konsentrasi,
+		A.foto,C.nama as nama_event,D.nama_kota, E.nama as nama_gelombang,F.nama as nama_jurusan from apply A, pelamar B, event C, lokasi D, gelombang E, jurusan F
+		where A.id_pelamar = B.id_pelamar AND A.id_event = C.id_event AND C.id_lokasi = D.id_lokasi AND A.id_gelombang = E.id_gelombang
+		AND F.id_jurusan = A.id_jurusan_lamar $kriteria";
+		return $this->db->query($q);
+	}
+
+	public function getInformasiUjian($event,$jurusan,$level,$fase){
+		$kriteria = "";
+		if($event!=-1)
+			$kriteria = $kriteria ."AND A.id_event = '$event'";
+		if($jurusan!=-1)
+			$kriteria = $kriteria ."AND A.id_jurusan_lamar = '$jurusan'";
+		if($level!=-1)
+			$kriteria = $kriteria ."AND B.level = '$level'";
+		if($fase!=-1)
+			$kriteria = $kriteria ."AND A.id_fase = '$fase'";
+		$q = "select D.nama as nama_event, C.nama as nama_jurusan from apply A, pelamar B,jurusan C, event D 
+			where A.id_event = D.id_event AND A.id_jurusan_lamar = C.id_jurusan AND A.id_pelamar = B.id_pelamar $kriteria";
+		return $this->db->query($q);
+	}
+}

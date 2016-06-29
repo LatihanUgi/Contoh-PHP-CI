@@ -1,0 +1,147 @@
+<ul class="nav" id="side-menu">
+							<li>
+								<a href="<?php echo base_url()?>backend/home"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url()?>backend/setting"><i class="fa fa-gear nav_icon"></i>Setting</a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-user nav_icon"></i>Admin<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/addadmin"?>Tambah Admin</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatadmin">Lihat Admin</a>
+									</li>
+								</ul>
+								<!-- /nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-folder-o nav_icon"></i>Berita<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/addartikel"?>Tambah Berita</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatartikel">Lihat Berita</a>
+									</li>
+								</ul>
+								<!-- /nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-briefcase nav_icon"></i>Lowongan<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/addlowongan">Tambah Lowongan</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatlowongan">Lihat Data Lowongan</a>
+									</li>
+								</ul>
+							</li>
+							
+							
+							<li>
+								<a href="#"><i class="fa fa-users nav_icon"></i>Peserta<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatpeserta1">Lihat Daftar Peserta</a>
+									</li>
+								</ul>
+								<!-- //nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-book nav_icon"></i>Jurusan<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatjurusan">Lihat Daftar Jurusan</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/addjurusan">Tambah Jurusan</a>
+									</li>
+									
+								</ul>
+								<!-- //nav-second-level -->
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-check nav_icon"></i>Fase<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatfase">Lihat Daftar Fase</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/addfase">Daftar Hadir Fase</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-th nav_icon"></i>Gelombang<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatgelombang">Lihat Daftar Gelombang</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/addgelombang">Tambah Gelombang</a>
+									</li>
+									
+								</ul>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-asterisk nav_icon"></i>Lokasi<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="<?php echo base_url()?>backend/lihatlokasi">Lihat Daftar Lokasi</a>
+									</li>
+									<li>
+										<a href="<?php echo base_url()?>backend/addlokasi">Tambah Lokasi</a>
+									</li>
+								</ul>
+							</li>
+							<!--<li>
+								<a href="<?php echo base_url()?>backend/kirimemail"><i class="fa fa-envelope nav_icon"></i>Kirim E-Mail Ke Semua Peserta</a>
+							</li>-->
+						</ul>
+							<!--<li>
+								<!--<a href="#"><i class="fa fa-check-square-o nav_icon"></i>Forms<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="inputs.html">Tambah Lowongan</a>
+									</li>
+									<li>
+										<a href="validation.html">Lihat Lowongan</a>
+									</li>
+								</ul>
+								<!-- //nav-second-level -->
+							<<!--</li>
+							<li>
+								<a href="#"><i class="fa fa-file-text-o nav_icon"></i>Pages<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="login.html">Login</a>
+									</li>
+									<li>
+										<a href="signup.html">SignUp</a>
+									</li>
+									<li>
+										<a href="blank-page.html">Blank Page</a>
+									</li>
+								</ul>
+								<!-- //nav-second-level -->
+							<!--</li>
+							<li>
+								<a href="charts.html" class="chart-nav"><i class="fa fa-bar-chart nav_icon"></i>Charts</a>
+							</li>
+							<li>
+								<a href="#" class="chart-nav"><i class="fa fa-list-ul nav_icon"></i>Extras<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level collapse">
+									<li>
+										<a href="tables.html">Tables</a>
+									</li>
+									<li>
+										<a href="404.html">404 Page</a>
+									</li>
+								</ul>
+								<!-- //nav-second-level -->
+							<!--</li>
+							<
